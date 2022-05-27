@@ -1,4 +1,4 @@
-package com.globusdigital.employeemanager.exception;
+package com.globusdigital.patientsmanager.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {

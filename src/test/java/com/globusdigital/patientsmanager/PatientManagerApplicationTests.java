@@ -1,10 +1,10 @@
-package com.globusdigital.employeemanager;
+package com.globusdigital.patientsmanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EmployeemanagerApplicationTests {
+class PatientManagerApplicationTests {
 
 	@Test
 	void contextLoads() {

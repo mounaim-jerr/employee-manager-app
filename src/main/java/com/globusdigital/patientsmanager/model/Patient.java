@@ -1,32 +1,33 @@
-package com.globusdigital.employeemanager.model;
+package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-public class Employee implements Serializable {
+public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,updatable = false)
     private Long id;
     private String name ;
     private String email ;
-    private String jobTitle;
-    private String phone;
-    private String imageUrl;
-    @Column(nullable = false,updatable = false)
-    private String employeeCode;
 
-    public Employee(Long id, String name, String email, String jobTitle, String phone, String imageUrl, String employeeCode) {
+    private String phone;
+    @Column(nullable = false,updatable = false)
+    private String cin;
+    @Column(nullable = false,updatable = false)
+    private String patientCode;
+
+    public Patient(Long id, String name, String email, String phone, String cin, String patientCode) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.jobTitle = jobTitle;
+
         this.phone = phone;
-        this.imageUrl = imageUrl;
-        this.employeeCode = employeeCode;
+        this.cin = cin;
+        this.patientCode = patientCode;
     }
 
-    public Employee() {
+    public Patient() {
 
     }
 
@@ -54,13 +55,7 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
 
-    public void setJobTitle(String jobTiltle) {
-        this.jobTitle = jobTiltle;
-    }
 
     public String getPhone() {
         return phone;
@@ -70,30 +65,29 @@ public class Employee implements Serializable {
         this.phone = phone;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCin() {
+        return cin;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setCin(String imageUrl) {
+        this.cin = imageUrl;
     }
 
-    public String getEmployeeCode() {
-        return employeeCode;
+    public String getPatientCode() {
+        return patientCode;
     }
 
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
+    public void setPatientCode(String patientCode) {
+        this.patientCode = patientCode;
     }
     @Override
     public  String toString() {
-        return "employee{ " +
+        return "patient{ " +
                 "id= " + id +
                 ",name= '" + name + '\'' +
                 ",email= '" + email + '\'' +
-                ",jobTitle= '" + jobTitle + '\'' +
                 ",phone= '" + phone + '\'' +
-                ",imageUrl= '" + imageUrl + '\'' +
+                ",cin= '" + cin + '\'' +
                   '}';
     }
 }

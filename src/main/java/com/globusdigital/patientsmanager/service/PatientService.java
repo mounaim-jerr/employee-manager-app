@@ -11,8 +11,9 @@ import java.util.UUID;
 
 @Service
 public class PatientService {
+
     private final PatientRepo patientRepo;
-@Autowired
+    @Autowired
     public PatientService(PatientRepo patientRepo) {
         this.patientRepo = patientRepo;
     }
@@ -27,10 +28,13 @@ public class PatientService {
     return patientRepo.save(patient);
     }
     public Patient findPatientById(Long id){
-    return patientRepo.findPatientsById(id).orElseThrow(() -> new UserNotFoundException("user by id " + id + "was not found"));
+    return patientRepo.findPatientById(id).orElseThrow(() -> new UserNotFoundException("user by id " + id + "was not found"));
     }
     public void deletePatient(Long id){
-    patientRepo.deletePatientsById(id);
+    patientRepo.deleteById(id);
+    }
+    public  void deleteAllPatients(){
+        patientRepo.deleteAll();
     }
 
 }

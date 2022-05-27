@@ -2,15 +2,17 @@ package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+//TODO i have to learn about Serializable
 @Entity
 public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,updatable = false)
     private Long id;
+    @Column
     private String name ;
+    @Column
     private String email ;
-
+    @Column
     private String phone;
     @Column(nullable = false,updatable = false)
     private String cin;
@@ -21,7 +23,6 @@ public class Patient implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
-
         this.phone = phone;
         this.cin = cin;
         this.patientCode = patientCode;

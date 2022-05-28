@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 //TODO i have to learn about Serializable
 @Entity
+//@Table(name="T_Patient")
 public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,8 @@ public class Patient implements Serializable {
     @Column(nullable = false,updatable = false)
     private String patientCode;
 
-    public Patient(Long id, String name, String email, String phone, String cin, String patientCode) {
-        this.id = id;
+    public Patient(String name, String email, String phone, String cin, String patientCode) {
+        //this.id = id; Long id;
         this.name = name;
         this.email = email;
         this.phone = phone;

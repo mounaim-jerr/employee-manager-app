@@ -2,9 +2,7 @@ package com.globusdigital.patientsmanager.controllers;
 
 import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.service.PatientService;
-import com.globusdigital.patientsmanager.service.PatientServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +13,12 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
 
-    @Autowired
-    private PatientService patientServiceImp;
+    //@Autowired
+    private final PatientService patientServiceImp;
+
+    public PatientController(PatientService patientServiceImp) {
+        this.patientServiceImp = patientServiceImp;
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Patient>> getAllPatients(){

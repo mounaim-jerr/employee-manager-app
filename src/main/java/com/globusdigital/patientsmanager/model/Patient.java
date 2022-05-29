@@ -3,6 +3,7 @@ package com.globusdigital.patientsmanager.model;
 import javax.persistence.*;
 import java.io.Serializable;
 //TODO i have to learn about Serializable
+//TODO add gender and date of born fields (column)
 @Entity
 //@Table(name="T_Patient")
 public class Patient implements Serializable {
@@ -20,13 +21,13 @@ public class Patient implements Serializable {
     @Column(nullable = false,updatable = false)
     private String patientCode;
 
-    public Patient(String name, String email, String phone, String cin, String patientCode) {
+    public Patient(String name, String email, String phone, String cin) {
         //this.id = id; Long id;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.cin = cin;
-        this.patientCode = patientCode;
+       // this.patientCode = patientCode; String patientCode;
     }
 
     public Patient() {

@@ -1,18 +1,18 @@
 package com.globusdigital.patientsmanager.service;
 
-import com.globusdigital.patientsmanager.exception.UserNotFoundException;
+
 import com.globusdigital.patientsmanager.model.Patient;
 
 import java.util.List;
-import java.util.UUID;
 
+//TODO ask taoufik about this
 public interface PatientService {
-    public Patient addPatient(Patient patient);
-    public List<Patient> findAllPatients();
-    public Patient updatePatient(Patient patient);
-    public Patient findPatientById(Long id);
-    public List<Patient> findPatientByName(String name);
-    public void deletePatient(Long id);
+    Patient addPatient(Patient patient);
+     List<Patient> findAllPatients();
+     Patient updatePatient(Patient patient);
+     Patient findPatientById(Long id);
+     List<Patient> findPatientByName(String name);
+     void deletePatient(Long id);
 
 
 }

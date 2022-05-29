@@ -17,11 +17,10 @@ public class Doctor {
     private String doctorEmail;
     @Column
     private String doctorGender;
-    @Column(nullable = false)
-    private Speciality doctorSpeciality;
+
     @Column
     private Date doctorBornDate;
-    //private List<Patient> patient;
+
 
     public Doctor() {
     }
@@ -74,13 +73,7 @@ public class Doctor {
         this.doctorGender = doctorGender;
     }
 
-    public Speciality getDoctorSpeciality() {
-        return doctorSpeciality;
-    }
 
-    public void setDoctorSpeciality(Speciality doctorSpeciality) {
-        this.doctorSpeciality = doctorSpeciality;
-    }
 
     public Date getDoctorBornDate() {
         return doctorBornDate;

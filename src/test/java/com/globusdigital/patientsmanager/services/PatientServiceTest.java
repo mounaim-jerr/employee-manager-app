@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class patientServiceTest {
+public class PatientServiceTest {
     @Autowired
     PatientServiceImp patientServiceImp;
     @Autowired
@@ -44,7 +44,6 @@ public class patientServiceTest {
         patient.setEmail("jerroudi.mo@gmail.com");
         patient = patientServiceImp.addPatient(patient);
         patientServiceImp.deletePatient(patient.getId());
-
         Patient finalPatient = patient;
         Assertions.assertThatThrownBy(()->{
             patientServiceImp.findPatientById( finalPatient.getId());

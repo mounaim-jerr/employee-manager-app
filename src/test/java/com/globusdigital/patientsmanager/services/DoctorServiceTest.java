@@ -45,10 +45,37 @@ public void findDoctorByName(){
     //}).isInstanceOf(UserNotFoundException.class);
     doctorFind = doctorServiceImp.findDoctorByName("momo");
     Assertions.assertThat(doctorFind.getDoctorName()).isEqualTo("momo");
-
-
-
-
-
 }
+@Test
+    public void addDoctorTest(){
+    Doctor doctor = new Doctor();
+    doctor.setDoctorCin("FA171493");
+    doctor = doctorServiceImp.addDoctor(doctor);
+    Assertions.assertThat(doctor.getDoctorCin()).isEqualTo("FA171493");
+    }
+    @Test
+    public void updateDoctorTest(){
+    Doctor doctor = new Doctor();
+    doctor.setDoctorCin("FA171493");
+    doctor = doctorServiceImp.addDoctor(doctor);
+    Long id = doctor.getId();
+    doctor.setDoctorCin("FA121212");
+    doctor = doctorServiceImp.updateDoctor(doctor);
+    Assertions.assertThat(doctor.getId()).isEqualTo(id);
+    doctor = doctorServiceImp.findDoctorById(doctor.getId());
+    Assertions.assertThat(doctor.getDoctorCin()).isEqualTo("FA121212");
+    }
+    @Test
+    public void deleteDoctorTest(){
+    Doctor doctor = new Doctor();
+    doctor.setDoctorCin("FA171492");
+    doctor= doctorServiceImp.addDoctor(doctor);
+    doctorServiceImp.deleteDoctor(doctor.getId());
+    Doctor finalDoctor = doctor;
+        Assertions.assertThatThrownBy(()->{
+            doctorServiceImp.findDoctorById( finalDoctor.getId());
+        }).isInstanceOf(UserNotFoundException.class);
+    }
+
+
 }

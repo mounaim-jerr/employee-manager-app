@@ -9,7 +9,7 @@ public class Doctor {
     private Long id ;
     @Column
     private String doctorName;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false)
     private String doctorCin;
     @Column(nullable = false,updatable = false)
     private String doctorCode;

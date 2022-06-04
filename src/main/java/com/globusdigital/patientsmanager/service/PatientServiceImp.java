@@ -3,6 +3,7 @@ package com.globusdigital.patientsmanager.service;
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
 import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.repo.PatientRepo;
+import com.globusdigital.patientsmanager.service.interfaces.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

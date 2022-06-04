@@ -3,15 +3,12 @@ package com.globusdigital.patientsmanager.services;
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
 import com.globusdigital.patientsmanager.model.Doctor;
 import com.globusdigital.patientsmanager.repo.DoctorRepo;
-import com.globusdigital.patientsmanager.service.DoctorService;
 import com.globusdigital.patientsmanager.service.DoctorServiceImp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 public class DoctorServiceTest {

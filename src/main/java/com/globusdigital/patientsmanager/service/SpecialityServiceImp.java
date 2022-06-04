@@ -3,14 +3,15 @@ package com.globusdigital.patientsmanager.service;
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
 import com.globusdigital.patientsmanager.model.Speciality;
 import com.globusdigital.patientsmanager.repo.SpecialityRepo;
+import com.globusdigital.patientsmanager.service.interfaces.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SpecialityServiceImp implements  SpecialityService{
-    private final SpecialityRepo specialityRepo;
+public class SpecialityServiceImp implements SpecialityService {
+    private final  SpecialityRepo specialityRepo;
     @Autowired
     public SpecialityServiceImp(SpecialityRepo specialityRepo) {
         this.specialityRepo = specialityRepo;
@@ -30,7 +31,7 @@ public class SpecialityServiceImp implements  SpecialityService{
     }
     @Override
    public List<Speciality> findSpecialityByName(String name){
-        return specialityRepo.findByNameContaining(name);
+        return specialityRepo.findBySpecialityNameContaining(name);
     }
 
 }

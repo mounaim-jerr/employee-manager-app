@@ -1,4 +1,4 @@
-package com.globusdigital.patientsmanager.service;
+package com.globusdigital.patientsmanager.service.interfaces;
 
 import com.globusdigital.patientsmanager.model.Doctor;
 

@@ -1,8 +1,7 @@
 package com.globusdigital.patientsmanager.controllers;
 
 import com.globusdigital.patientsmanager.model.Patient;
-import com.globusdigital.patientsmanager.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.globusdigital.patientsmanager.service.interfaces.PatientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

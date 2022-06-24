@@ -2,11 +2,27 @@ package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
+   @ManyToMany
+    @JoinTable(
+            name = "doctors_specialities",
+            joinColumns = @JoinColumn(name = "specialities_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id")
+
+    )
+private Set<Speciality> specialities = new HashSet<>();
+
+
+
+
+
     @Column
     private String doctorName;
     @Column(nullable = false)
@@ -20,6 +36,7 @@ public class Doctor {
 
     @Column
     private Date doctorBornDate;
+
 
 
     public Doctor() {
@@ -82,4 +99,10 @@ public class Doctor {
     public void setDoctorBornDate(Date doctorBornDate) {
         this.doctorBornDate = doctorBornDate;
     }
+
+    public Set<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+
 }

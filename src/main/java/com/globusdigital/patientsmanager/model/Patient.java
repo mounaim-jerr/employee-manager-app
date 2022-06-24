@@ -2,8 +2,10 @@ package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 //TODO i have to learn about Serializable
 //TODO add gender and date of born fields (column)
+// TODO ask toufik about (collection , list(can duplicate and extend collection) , set(can't duplicate the same elements , extend collection ) ) which one i should use and why ?
 @Entity
 //@Table(name="T_Patient")
 public class Patient implements Serializable {
@@ -20,6 +22,9 @@ public class Patient implements Serializable {
     private String cin;
     @Column(nullable = false,updatable = false)
     private String patientCode;
+    @ManyToMany
+    @JoinTable(name = "patients_doctors", joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "doctor_id", referencedColumnName = "id"))
+  private Collection<Doctor> doctors;
 
     public Patient(String name, String email, String phone, String cin) {
         //this.id = id; Long id;

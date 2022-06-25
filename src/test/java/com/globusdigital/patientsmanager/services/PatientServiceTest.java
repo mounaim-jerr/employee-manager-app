@@ -1,8 +1,10 @@
 package com.globusdigital.patientsmanager.services;
 
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
+import com.globusdigital.patientsmanager.model.Doctor;
 import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.repo.PatientRepo;
+import com.globusdigital.patientsmanager.service.DoctorServiceImp;
 import com.globusdigital.patientsmanager.service.PatientServiceImp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,8 @@ public class PatientServiceTest {
     @Autowired
     PatientServiceImp patientServiceImp;
     @Autowired
+    DoctorServiceImp doctorServiceImp;
+    @Autowired
     PatientRepo patientRepo;
     @BeforeEach
     public void initContext(){
@@ -24,17 +28,30 @@ public class PatientServiceTest {
     }
     @Test
     public void addPatientTest(){
+        Doctor doctor = new Doctor();
+        doctor.setDoctorCin("FA131313");
+        doctor.setDoctorName("doctor");
+        doctor = doctorServiceImp.addDoctor(doctor);
+        //==============add patient
         Patient patient = new Patient();
         patient.setName("jerroudi abdelmonaim");
         patient.setCin("FA171492");
         patient.setEmail("jerroudi.mo@gmail.com");
+        patient.setDoctorTrait(doctor);
         patient= patientServiceImp.addPatient(patient);
+
         Assertions.assertThat(patient).isNotNull();
         Assertions.assertThat(patient.getId()).isNotNull();
         Assertions.assertThat(patient.getName()).isEqualTo("jerroudi abdelmonaim");
         Assertions.assertThat(patient.getCin()).isEqualTo("FA171492");
         Assertions.assertThat(patient.getEmail()).isEqualTo("jerroudi.mo@gmail.com");
         Assertions.assertThat(patient.getPatientCode()).isNotNull();
+        Assertions.assertThat(doctor.getDoctorName()).isEqualTo("doctor");
+
+        doctor.setDoctorName("doctorUpdate");
+        patientRepo.saveAndFlush(patient);
+        Assertions.assertThat(doctor.getDoctorName()).isEqualTo("doctorUpdate");
+
     }
     @Test
     public void deletePatientTest(){

@@ -1,30 +1,34 @@
 package com.globusdigital.patientsmanager.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+
+
 //TODO i have to learn about Serializable
 //TODO add gender and date of born fields (column)
 // TODO ask toufik about (collection , list(can duplicate and extend collection) , set(can't duplicate the same elements , extend collection ) ) which one i should use and why ?
 @Entity
 //@Table(name="T_Patient")
 public class Patient implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String name ;
+    private String name;
     @Column
-    private String email ;
+    private String email;
     @Column
     private String phone;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private String cin;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private String patientCode;
-    @ManyToMany
-    @JoinTable(name = "patients_doctors", joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "doctor_id", referencedColumnName = "id"))
-  private Collection<Doctor> doctors;
+    @OneToOne( fetch = FetchType.LAZY )
+    private Doctor doctorTrait;
+
 
     public Patient(String name, String email, String phone, String cin) {
         //this.id = id; Long id;
@@ -32,7 +36,7 @@ public class Patient implements Serializable {
         this.email = email;
         this.phone = phone;
         this.cin = cin;
-       // this.patientCode = patientCode; String patientCode;
+        // this.patientCode = patientCode; String patientCode;
     }
 
     public Patient() {
@@ -64,7 +68,6 @@ public class Patient implements Serializable {
     }
 
 
-
     public String getPhone() {
         return phone;
     }
@@ -88,14 +91,23 @@ public class Patient implements Serializable {
     public void setPatientCode(String patientCode) {
         this.patientCode = patientCode;
     }
+
+    public Doctor getDoctorTrait() {
+        return doctorTrait;
+    }
+
+    public void setDoctorTrait(Doctor doctorTrait) {
+        this.doctorTrait = doctorTrait;
+    }
+
     @Override
-    public  String toString() {
+    public String toString() {
         return "patient{ " +
                 "id= " + id +
                 ",name= '" + name + '\'' +
                 ",email= '" + email + '\'' +
                 ",phone= '" + phone + '\'' +
                 ",cin= '" + cin + '\'' +
-                  '}';
+                '}';
     }
 }

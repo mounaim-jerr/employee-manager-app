@@ -37,9 +37,9 @@ public class DepartmentServiceTest {
         department=departmentServiceImp.addDepartment(department);
         Long id = department.getId();
         departmentServiceImp.deleteDepartment(id);
-        Department departmentFinal = department;
+
         Assertions.assertThatThrownBy(()->{
-            departmentServiceImp.findDepartmentById( departmentFinal.getId());
+            departmentServiceImp.findDepartmentById( id);
         }).isInstanceOf(UserNotFoundException.class);
     }
     @Test

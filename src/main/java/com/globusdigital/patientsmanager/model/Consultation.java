@@ -2,6 +2,7 @@ package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,13 +12,13 @@ public class Consultation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     @Column(nullable = false)
-    private Date date ;
+    private LocalDate date ;
     @Column(nullable = false)
     private String observation;
     @Column
     private String medicament;
     @Column
-    private Date prochainRdv;
+    private LocalDate prochainRdv;
     @OneToOne
     private Doctor doctorConsul ;
     @OneToOne
@@ -34,11 +35,11 @@ public class Consultation implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -58,11 +59,11 @@ public class Consultation implements Serializable {
         this.medicament = medicament;
     }
 
-    public Date getProchainRdv() {
+    public LocalDate getProchainRdv() {
         return prochainRdv;
     }
 
-    public void setProchainRdv(Date prochainRdv) {
+    public void setProchainRdv(LocalDate prochainRdv) {
         this.prochainRdv = prochainRdv;
     }
 

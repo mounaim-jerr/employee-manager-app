@@ -18,32 +18,36 @@ public class DepartmentServiceTest {
     DepartmentServiceImp departmentServiceImp;
     @Autowired
     DepartmentRepo departmentRepo;
+
     @BeforeEach
-    public void initContext(){
+    public void initContext() {
         departmentRepo.deleteAll();
     }
+
     @Test
-    public void addDepartmentTest(){
+    public void addDepartmentTest() {
         Department department = new Department();
         department.setDepartmentName("departmentone");
-        department=departmentServiceImp.addDepartment(department);
+        department = departmentServiceImp.addDepartment(department);
         Assertions.assertThat(department).isNotNull();
         Assertions.assertThat(department.getDepartmentName()).isEqualTo("departmentone");
     }
+
     @Test
-    public void  deleteDepartmentTest(){
+    public void deleteDepartmentTest() {
         Department department = new Department();
         department.setDepartmentName("departementone");
-        department=departmentServiceImp.addDepartment(department);
+        department = departmentServiceImp.addDepartment(department);
         Long id = department.getId();
         departmentServiceImp.deleteDepartment(id);
 
-        Assertions.assertThatThrownBy(()->{
-            departmentServiceImp.findDepartmentById( id);
+        Assertions.assertThatThrownBy(() -> {
+            departmentServiceImp.findDepartmentById(id);
         }).isInstanceOf(UserNotFoundException.class);
     }
+
     @Test
-    public void findDepartmentByNameTest(){
+    public void findDepartmentByNameTest() {
         Department department1 = new Department();
         Department department = new Department();
         Department department2 = new Department();

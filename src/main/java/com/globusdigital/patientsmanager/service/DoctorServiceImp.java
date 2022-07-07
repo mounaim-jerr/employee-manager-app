@@ -7,6 +7,7 @@ import com.globusdigital.patientsmanager.service.interfaces.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -36,7 +37,13 @@ return doctorRepo.save(doctor);
     public Doctor findDoctorById(Long id) {
         return doctorRepo.findDoctorById(id).orElseThrow(() -> new UserNotFoundException("user by id " + id + "was not found"));
     }
-    public Doctor findDoctorByName(String name){
-    return  doctorRepo.findByDoctorName(name).orElseThrow(() -> new UserNotFoundException("doctor named "+ name + "not found"));
+    @Override
+    public List<Doctor> findDoctorByName(String name){
+    return  doctorRepo.findByDoctorNameContaining(name);
     }
+    @Override
+    public List<Doctor> findAllDoctors(){
+        return doctorRepo.findAll();
+    }
+
 }

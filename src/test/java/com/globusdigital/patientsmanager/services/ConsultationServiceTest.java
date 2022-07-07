@@ -55,5 +55,21 @@ public class ConsultationServiceTest {
         listConsultation = consultationRepo.findAll();
         Assertions.assertThat(listConsultation.size()).isEqualTo(2);
     }
+    @Test
+    public void findConsultationByIdTest(){
 
+        List<Consultation> listConsultation = addThreeConsultation("obs1","obs2","obs3");
+        Consultation consultation= consultationServiceImp.findConsultationById(listConsultation.get(1).getId());
+    Assertions.assertThat(consultation.getId()).isEqualTo(listConsultation.get(1).getId());
+        Assertions.assertThat(consultation.getMedicament()).isEqualTo(listConsultation.get(1).getMedicament());
+    }
+    @Test
+    public void updateConsultationTest(){
+        List<Consultation> listConsultation = addThreeConsultation("obs1","obs2","obs3");
+        Consultation consultation= consultationServiceImp.findConsultationById(listConsultation.get(1).getId());
+        consultation.setObservation("obsUpdate1");
+        consultationServiceImp.addConsultation(consultation);
+        listConsultation = consultationServiceImp.findAllConsultation();
+        Assertions.assertThat(listConsultation.get(1).getObservation()).isEqualTo("obsUpdate1");
+    }
 }

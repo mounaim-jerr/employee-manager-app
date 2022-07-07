@@ -9,34 +9,24 @@ import java.util.Set;
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-   @ManyToMany
-    @JoinTable(
-            name = "doctors_specialities",
-            joinColumns = @JoinColumn(name = "specialities_id"),
-            inverseJoinColumns = @JoinColumn(name = "doctor_id")
-
-    )
-private Set<Speciality> specialities = new HashSet<>();
-
-
-
+    private Long id;
 
 
     @Column
     private String doctorName;
     @Column(nullable = false)
     private String doctorCin;
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private String doctorCode;
     @Column
     private String doctorEmail;
     @Column
     private String doctorGender;
-
     @Column
     private Date doctorBornDate;
-
+    @OneToOne
+    @JoinColumn(nullable = false)
+    private Speciality specialityOfDoctor;
 
 
     public Doctor() {
@@ -91,7 +81,6 @@ private Set<Speciality> specialities = new HashSet<>();
     }
 
 
-
     public Date getDoctorBornDate() {
         return doctorBornDate;
     }
@@ -100,9 +89,11 @@ private Set<Speciality> specialities = new HashSet<>();
         this.doctorBornDate = doctorBornDate;
     }
 
-    public Set<Speciality> getSpecialities() {
-        return specialities;
+    public Speciality getSpecialityOfDoctor() {
+        return specialityOfDoctor;
     }
 
-
+    public void setSpecialityOfDoctor(Speciality specialityOfDoctor) {
+        this.specialityOfDoctor = specialityOfDoctor;
+    }
 }

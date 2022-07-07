@@ -1,21 +1,17 @@
 package com.globusdigital.patientsmanager.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Speciality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToMany(mappedBy = "specialities")
-    private Set<Doctor> doctors = new HashSet<>();
-
-
     @Column(nullable = false)
     private String specialityName;
+    @OneToOne
+   @JoinColumn(nullable = false)
+    private Department departmentOfTheSpeciality;
 
     public Speciality() {
     }
@@ -36,9 +32,11 @@ public class Speciality {
         this.specialityName = specialityName;
     }
 
-    public Set<Doctor> getDoctors() {
-        return doctors;
+    public Department getDepartmentOfTheSpeciality() {
+        return departmentOfTheSpeciality;
     }
 
-
+    public void setDepartmentOfTheSpeciality(Department departmentOfTheSpeciality) {
+        this.departmentOfTheSpeciality = departmentOfTheSpeciality;
+    }
 }

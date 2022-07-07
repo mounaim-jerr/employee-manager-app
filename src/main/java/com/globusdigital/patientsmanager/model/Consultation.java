@@ -3,7 +3,6 @@ package com.globusdigital.patientsmanager.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Consultation implements Serializable {
@@ -20,8 +19,10 @@ public class Consultation implements Serializable {
     @Column
     private LocalDate prochainRdv;
     @OneToOne
+    @JoinColumn(nullable = false)
     private Doctor doctorConsul ;
     @OneToOne
+    @JoinColumn(nullable = false)
     private Patient patientConsul;
 
     public Consultation() {

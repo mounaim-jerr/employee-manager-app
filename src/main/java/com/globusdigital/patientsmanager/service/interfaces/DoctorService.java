@@ -2,6 +2,8 @@ package com.globusdigital.patientsmanager.service.interfaces;
 
 import com.globusdigital.patientsmanager.model.Doctor;
 
+import java.util.List;
+
 
 public interface DoctorService {
     Doctor addDoctor(Doctor doctor);
@@ -9,6 +11,8 @@ public interface DoctorService {
     void deleteDoctor(Long id);
     Doctor findDoctorById(Long id);
 
-    Doctor findDoctorByName(String name);
+    List<Doctor> findDoctorByName(String name);
+
+    List<Doctor> findAllDoctors();
 
 }

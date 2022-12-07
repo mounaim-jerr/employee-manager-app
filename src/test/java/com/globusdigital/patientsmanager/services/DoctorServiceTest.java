@@ -4,7 +4,7 @@ import com.globusdigital.patientsmanager.exception.UserNotFoundException;
 import com.globusdigital.patientsmanager.model.Department;
 import com.globusdigital.patientsmanager.model.Doctor;
 import com.globusdigital.patientsmanager.model.Speciality;
-import com.globusdigital.patientsmanager.repo.DoctorRepo;
+import com.globusdigital.patientsmanager.repo.*;
 import com.globusdigital.patientsmanager.service.DepartmentServiceImp;
 import com.globusdigital.patientsmanager.service.DoctorServiceImp;
 import com.globusdigital.patientsmanager.service.SpecialityServiceImp;
@@ -24,12 +24,25 @@ public class DoctorServiceTest {
     DepartmentServiceImp departmentServiceImp;
 @Autowired
     SpecialityServiceImp specialityServiceImp;
-@Autowired
+    @Autowired
+    DepartmentRepo departmentRepo;
+    @Autowired
+    SpecialityRepo specialityRepo;
+    @Autowired
     DoctorRepo doctorRepo;
-@BeforeEach
-public void initContext(){
-    doctorRepo.deleteAll();
-}
+    @Autowired
+    PatientRepo patientRepo;
+    @Autowired
+    ConsultationRepo consultationRepo;
+    @BeforeEach
+
+    public void initContext() {
+        consultationRepo.deleteAll();
+        patientRepo.deleteAll();
+        doctorRepo.deleteAll();
+        specialityRepo.deleteAll();
+        departmentRepo.deleteAll();
+    }
 @Test
 public void findDoctorByName(){
     List<Doctor> doctorFind ;
@@ -55,11 +68,6 @@ public void findDoctorByName(){
     doctor =  doctorServiceImp.addDoctor(doctor);
     doctor1= doctorServiceImp.addDoctor(doctor1);
     doctor2= doctorServiceImp.addDoctor(doctor2);
-    //doctorFind = doctorServiceImp.findDoctorByName("mo");
-    //Doctor doctorFinal = doctorFind;
-    //Assertions.assertThatThrownBy(()->{
-      //  doctorServiceImp.findDoctorByName( doctorFinal.getDoctorName());
-    //}).isInstanceOf(UserNotFoundException.class);
     doctorFind = doctorServiceImp.findDoctorByName("momo");
     Assertions.assertThat(doctorFind.size()).isEqualTo(1);
     Assertions.assertThat(doctorFind.get(0).getDoctorName()).isEqualTo("momo");
@@ -67,15 +75,31 @@ public void findDoctorByName(){
 }
 @Test
     public void addDoctorTest(){
+    Department department = new Department();
+    department.setDepartmentName("department");
+    departmentServiceImp.addDepartment(department);
+    Speciality speciality = new Speciality();
+    speciality.setSpecialityName("speciality");
+    speciality.setDepartmentOfTheSpeciality(department);
+    specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
     doctor.setDoctorCin("FA171493");
+    doctor.setSpecialityOfDoctor(speciality);
     doctor = doctorServiceImp.addDoctor(doctor);
     Assertions.assertThat(doctor.getDoctorCin()).isEqualTo("FA171493");
     }
     @Test
     public void updateDoctorTest(){
+        Department department = new Department();
+        department.setDepartmentName("department");
+        departmentServiceImp.addDepartment(department);
+        Speciality speciality = new Speciality();
+        speciality.setSpecialityName("speciality");
+        speciality.setDepartmentOfTheSpeciality(department);
+        specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
     doctor.setDoctorCin("FA171493");
+    doctor.setSpecialityOfDoctor(speciality);
     doctor = doctorServiceImp.addDoctor(doctor);
     Long id = doctor.getId();
     doctor.setDoctorCin("FA121212");
@@ -86,8 +110,16 @@ public void findDoctorByName(){
     }
     @Test
     public void deleteDoctorTest(){
+        Department department = new Department();
+        department.setDepartmentName("department");
+        departmentServiceImp.addDepartment(department);
+        Speciality speciality = new Speciality();
+        speciality.setSpecialityName("speciality");
+        speciality.setDepartmentOfTheSpeciality(department);
+        specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
     doctor.setDoctorCin("FA171492");
+    doctor.setSpecialityOfDoctor(speciality);
     doctor= doctorServiceImp.addDoctor(doctor);
     doctorServiceImp.deleteDoctor(doctor.getId());
     Doctor finalDoctor = doctor;

@@ -1,9 +1,13 @@
 package com.globusdigital.patientsmanager.services;
 
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
+import com.globusdigital.patientsmanager.model.Department;
 import com.globusdigital.patientsmanager.model.Doctor;
 import com.globusdigital.patientsmanager.model.Patient;
-import com.globusdigital.patientsmanager.repo.PatientRepo;
+import com.globusdigital.patientsmanager.model.Speciality;
+import com.globusdigital.patientsmanager.repo.*;
+import com.globusdigital.patientsmanager.service.DepartmentServiceImp;
+import com.globusdigital.patientsmanager.service.SpecialityServiceImp;
 import com.globusdigital.patientsmanager.service.DoctorServiceImp;
 import com.globusdigital.patientsmanager.service.PatientServiceImp;
 import org.assertj.core.api.Assertions;
@@ -21,23 +25,47 @@ public class PatientServiceTest {
     @Autowired
     DoctorServiceImp doctorServiceImp;
     @Autowired
+    DepartmentServiceImp departmentServiceImp;
+    @Autowired
+    SpecialityServiceImp specialityServiceImp;
+    @Autowired
+    DepartmentRepo departmentRepo;
+    @Autowired
+    SpecialityRepo specialityRepo;
+    @Autowired
+    DoctorRepo doctorRepo;
+    @Autowired
     PatientRepo patientRepo;
+    @Autowired
+    ConsultationRepo consultationRepo;
     @BeforeEach
-    public void initContext(){
-      patientRepo.deleteAll();
+    public void initContext() {
+        consultationRepo.deleteAll();
+        patientRepo.deleteAll();
+        doctorRepo.deleteAll();
+        specialityRepo.deleteAll();
+        departmentRepo.deleteAll();
     }
     @Test
     public void addPatientTest(){
+      Department department = new Department();
+      department.setDepartmentName("department");
+      departmentServiceImp.addDepartment(department);
+      Speciality speciality = new Speciality();
+      speciality.setSpecialityName("speciality");
+      speciality.setDepartmentOfTheSpeciality(department);
+      specialityServiceImp.addSpeciality(speciality);
         Doctor doctor = new Doctor();
         doctor.setDoctorCin("FA131313");
         doctor.setDoctorName("doctor");
+        doctor.setSpecialityOfDoctor(speciality);
         doctor = doctorServiceImp.addDoctor(doctor);
         //==============add patient
         Patient patient = new Patient();
         patient.setName("jerroudi abdelmonaim");
         patient.setCin("FA171492");
         patient.setEmail("jerroudi.mo@gmail.com");
-        patient.setDoctorTrait(doctor);
+
         patient= patientServiceImp.addPatient(patient);
 
         Assertions.assertThat(patient).isNotNull();
@@ -46,12 +74,6 @@ public class PatientServiceTest {
         Assertions.assertThat(patient.getCin()).isEqualTo("FA171492");
         Assertions.assertThat(patient.getEmail()).isEqualTo("jerroudi.mo@gmail.com");
         Assertions.assertThat(patient.getPatientCode()).isNotNull();
-        Assertions.assertThat(doctor.getDoctorName()).isEqualTo("doctor");
-
-        doctor.setDoctorName("doctorUpdate");
-        patientRepo.saveAndFlush(patient);
-        Assertions.assertThat(doctor.getDoctorName()).isEqualTo("doctorUpdate");
-
     }
     @Test
     public void deletePatientTest(){

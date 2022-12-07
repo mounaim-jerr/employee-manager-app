@@ -26,8 +26,8 @@ public class Patient implements Serializable {
     private String cin;
     @Column(nullable = false, updatable = false)
     private String patientCode;
-    @OneToOne( fetch = FetchType.LAZY )
-    private Doctor doctorTrait;
+   // @OneToOne( fetch = FetchType.LAZY )
+    //private Doctor doctorTrait;
 
 
     public Patient(String name, String email, String phone, String cin) {
@@ -92,13 +92,13 @@ public class Patient implements Serializable {
         this.patientCode = patientCode;
     }
 
-    public Doctor getDoctorTrait() {
-        return doctorTrait;
-    }
+  //  public Doctor getDoctorTrait() {
+    //    return doctorTrait;
+    //}
 
-    public void setDoctorTrait(Doctor doctorTrait) {
-        this.doctorTrait = doctorTrait;
-    }
+  //  public void setDoctorTrait(Doctor doctorTrait) {
+     //   this.doctorTrait = doctorTrait;
+    //}
 
     @Override
     public String toString() {

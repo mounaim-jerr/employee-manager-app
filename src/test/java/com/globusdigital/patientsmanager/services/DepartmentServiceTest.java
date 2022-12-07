@@ -2,7 +2,7 @@ package com.globusdigital.patientsmanager.services;
 
 import com.globusdigital.patientsmanager.exception.UserNotFoundException;
 import com.globusdigital.patientsmanager.model.Department;
-import com.globusdigital.patientsmanager.repo.DepartmentRepo;
+import com.globusdigital.patientsmanager.repo.*;
 import com.globusdigital.patientsmanager.service.DepartmentServiceImp;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,9 +18,20 @@ public class DepartmentServiceTest {
     DepartmentServiceImp departmentServiceImp;
     @Autowired
     DepartmentRepo departmentRepo;
-
+    @Autowired
+    SpecialityRepo specialityRepo;
+    @Autowired
+    DoctorRepo doctorRepo;
+    @Autowired
+    PatientRepo patientRepo;
+    @Autowired
+    ConsultationRepo consultationRepo;
     @BeforeEach
     public void initContext() {
+        consultationRepo.deleteAll();
+        patientRepo.deleteAll();
+        doctorRepo.deleteAll();
+        specialityRepo.deleteAll();
         departmentRepo.deleteAll();
     }
 

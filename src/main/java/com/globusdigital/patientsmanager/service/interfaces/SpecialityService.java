@@ -10,4 +10,5 @@ public interface SpecialityService {
     void deleteSpeciality(Long id);
     Speciality findSpecialityById(Long id);
     List<Speciality> findSpecialityByName(String name);
+    List<Speciality> findAllSpeciality();
 }

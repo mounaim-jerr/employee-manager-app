@@ -37,5 +37,9 @@ public class SpecialityServiceImp implements SpecialityService {
     public List<Speciality> findAllSpeciality(){
         return specialityRepo.findAll();
     }
+    @Override
+    public Speciality updateSpeciality(Speciality speciality){
+        return specialityRepo.save(speciality);
+    }
 
 }

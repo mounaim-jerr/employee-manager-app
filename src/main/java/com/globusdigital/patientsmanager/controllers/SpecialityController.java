@@ -1,13 +1,10 @@
 package com.globusdigital.patientsmanager.controllers;
 
-import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.model.Speciality;
 import com.globusdigital.patientsmanager.service.interfaces.SpecialityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +17,34 @@ public class SpecialityController {
         this.specialityServiceImp = specialityServiceImp;
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Speciality>> getAllSpeciality(){
+    public ResponseEntity<List<Speciality>> getAllSpecialities(){
         List<Speciality> specialityList = specialityServiceImp.findAllSpeciality();
         return new ResponseEntity<>(specialityList, HttpStatus.OK);
+    }
+    @GetMapping("/find/id/{id}")
+    public ResponseEntity<Speciality> getSpecialityById(@PathVariable("id") Long id){
+        Speciality speciality = specialityServiceImp.findSpecialityById(id);
+        return new ResponseEntity<>(speciality, HttpStatus.OK);
+    }
+    @GetMapping("/find/name/{name}")
+    public ResponseEntity<List<Speciality>> getSpecialitiesByName(@PathVariable ("name") String name){
+        List<Speciality> specialities = specialityServiceImp.findSpecialityByName(name);
+        return new ResponseEntity<>(specialities, HttpStatus.OK);
+
+    }
+    @PostMapping("/add")
+    public ResponseEntity<Speciality> addSpeciality(@RequestBody Speciality speciality){
+        Speciality newSpeciality = specialityServiceImp.addSpeciality(speciality);
+        return new ResponseEntity<>(newSpeciality , HttpStatus.CREATED);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<Speciality> updateSpeciality(@RequestBody Speciality speciality){
+        Speciality updateSpeciality = specialityServiceImp.updateSpeciality(speciality);
+        return new ResponseEntity<>(updateSpeciality, HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteSpeciality(@PathVariable ("id") Long id){
+        specialityServiceImp.deleteSpeciality(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

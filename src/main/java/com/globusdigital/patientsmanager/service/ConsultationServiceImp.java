@@ -36,4 +36,8 @@ public class ConsultationServiceImp implements ConsultationService {
     public List<Consultation> findAllConsultation(){
     return consultationRepo.findAll();
     }
+    @Override
+    public    List<Consultation> findConsultationByObs(String obs){
+    return consultationRepo.findByObservationContaining(obs);
+    }
 }

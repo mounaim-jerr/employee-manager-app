@@ -9,5 +9,6 @@ public interface ConsultationService {
     void deleteConsultation(Long id);
     Consultation updateConsultation(Consultation consultation);
     Consultation findConsultationById(Long id);
+    List<Consultation> findConsultationByObs(String obs);
     List<Consultation> findAllConsultation();
 }

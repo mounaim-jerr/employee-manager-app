@@ -16,8 +16,16 @@ public class DepartmentServiceImp implements DepartmentServices {
     public DepartmentServiceImp(DepartmentRepo departmentRepo) {
         this.departmentRepo = departmentRepo;
     }
+    @Autowired
+    public List<Department> findAllDepartments(){
+    return departmentRepo.findAll();
+    }
     @Override
     public Department addDepartment(Department department){
+    return departmentRepo.save(department);
+    }
+    @Override
+    public Department updateDepartment(Department department){
     return departmentRepo.save(department);
     }
     @Override

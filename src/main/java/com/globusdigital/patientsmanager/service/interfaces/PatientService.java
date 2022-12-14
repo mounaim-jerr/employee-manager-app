@@ -4,8 +4,6 @@ package com.globusdigital.patientsmanager.service.interfaces;
 import com.globusdigital.patientsmanager.model.Patient;
 
 import java.util.List;
-
-//TODO ask taoufik about this
 public interface PatientService {
     Patient addPatient(Patient patient);
 

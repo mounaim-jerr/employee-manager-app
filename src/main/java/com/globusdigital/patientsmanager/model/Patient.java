@@ -43,6 +43,12 @@ public class Patient implements Serializable {
 
     }
 
+    public Patient(Long id, String name, String cin) {
+        this.id = id;
+        this.name = name;
+        this.cin = cin;
+    }
+
     public Long getId() {
         return id;
     }

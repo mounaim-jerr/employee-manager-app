@@ -2,6 +2,7 @@ package com.globusdigital.patientsmanager.controllers;
 
 import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.service.interfaces.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,9 @@ import java.util.List;
 public class PatientController {
 
     //@Autowired
-    private final PatientService patientServiceImp;
 
+    private final PatientService patientServiceImp;
+    @Autowired
     public PatientController(PatientService patientServiceImp) {
         this.patientServiceImp = patientServiceImp;
     }

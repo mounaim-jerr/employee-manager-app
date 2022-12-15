@@ -48,4 +48,31 @@ public class PatientControllerTest {
                 .andExpect(status().isOk());
         verify(patientService).deletePatient(1L);
     }
+    @Test
+    public void testGetPatientById() throws Exception{
+     Long id = 1L;
+     mockMvc.perform(get("/patient/find/id/{id}", id))
+             .andExpect(status().isOk());
+        verify(patientService).findPatientById(1L);
+    }
+    @Test
+    public void testGetPatientByName() throws Exception {
+        String name = "name";
+       mockMvc.perform(get("/patient/find/name/{name}" , name))
+               .andExpect(status().isOk());
+       verify(patientService).findPatientByName("name");
+    }
+    @Test
+    public void testUpdatePatient() throws Exception {
+        Patient patient = new Patient(1L,"patient", "FACIN");
+        patientService.addPatient(patient);
+        patient.setName("patient1");
+        when(patientService.updatePatient(patient)).thenReturn(patient);
+        mockMvc.perform(put("/patient/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(TestUtil.convertObjectToJsonBytes(patient)))
+                .andExpect(status().isOk());
+
+    }
 }
+

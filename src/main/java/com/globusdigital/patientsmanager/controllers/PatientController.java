@@ -1,5 +1,6 @@
 package com.globusdigital.patientsmanager.controllers;
 
+
 import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.service.interfaces.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class PatientController {
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/find/id/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") Long id){
         Patient patient = patientServiceImp.findPatientById(id);
         return new ResponseEntity<>(patient, HttpStatus.OK);
@@ -48,6 +49,12 @@ public class PatientController {
     public ResponseEntity<?> deletePatient(@PathVariable("id") Long id ){
         patientServiceImp.deletePatient(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/find/name/{name}")
+    public ResponseEntity<List<Patient>> getPatientsByName(@PathVariable ("name") String name){
+        List<Patient> patients = patientServiceImp.findPatientByName(name);
+        return new ResponseEntity<>(patients, HttpStatus.OK);
+
     }
 
 

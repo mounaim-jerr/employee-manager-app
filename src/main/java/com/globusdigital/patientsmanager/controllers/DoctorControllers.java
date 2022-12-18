@@ -1,7 +1,6 @@
 package com.globusdigital.patientsmanager.controllers;
 
 import com.globusdigital.patientsmanager.model.Doctor;
-import com.globusdigital.patientsmanager.model.Patient;
 import com.globusdigital.patientsmanager.service.interfaces.DoctorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +21,12 @@ public class DoctorControllers {
         List<Doctor> doctors = doctorServiceImp.findAllDoctors();
         return new ResponseEntity<>(doctors, HttpStatus.OK);
     }
-    @GetMapping("/find/{id}")
+    @GetMapping("/find/id/{id}")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable ("id") Long id){
         Doctor doctor = doctorServiceImp.findDoctorById(id);
         return new ResponseEntity<>(doctor, HttpStatus.OK);
     }
-    @GetMapping("/find/{name}")
+    @GetMapping("/find/name/{name}")
     public ResponseEntity<List<Doctor>> getDoctorsByName(@PathVariable ("name") String name){
         List<Doctor> doctors = doctorServiceImp.findDoctorByName(name);
         return new ResponseEntity<>(doctors, HttpStatus.OK);

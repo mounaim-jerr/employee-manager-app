@@ -5,6 +5,7 @@ import com.globusdigital.patientsmanager.enums.Sex;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -30,15 +31,15 @@ public class Patient implements Serializable {
     private String patientCode;
 
     //  add sex and nextRDV and address and dateOfBirth
-@Column
-private Sex sex ;
-@Column
-private Date nextRDV;
-@Column
-private String address;
-@Column
-private Date dateOfBirth;
-   // @OneToOne( fetch = FetchType.LAZY )
+    @Column
+    private Sex sex;
+    @Column
+    private LocalDate nextRDV;
+    @Column
+    private String address;
+    @Column
+    private Date dateOfBirth;
+    // @OneToOne( fetch = FetchType.LAZY )
     //private Doctor doctorTrait;
 
 
@@ -118,11 +119,11 @@ private Date dateOfBirth;
         this.sex = sex;
     }
 
-    public Date getNextRDV() {
+    public LocalDate getNextRDV() {
         return nextRDV;
     }
 
-    public void setNextRDV(Date nextRDV) {
+    public void setNextRDV(LocalDate nextRDV) {
         this.nextRDV = nextRDV;
     }
 
@@ -146,8 +147,8 @@ private Date dateOfBirth;
     //    return doctorTrait;
     //}
 
-  //  public void setDoctorTrait(Doctor doctorTrait) {
-     //   this.doctorTrait = doctorTrait;
+    //  public void setDoctorTrait(Doctor doctorTrait) {
+    //   this.doctorTrait = doctorTrait;
     //}
 
     @Override

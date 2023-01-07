@@ -42,23 +42,23 @@ public class SpecialityServiceTest {
     @Test
     public void addSpecialityTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("cardiologie");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("cardiologie");
+        speciality.setDepartment(department);
         speciality = specialityServiceImp.addSpeciality(speciality);
         Assertions.assertThat(speciality).isNotNull();
-        Assertions.assertThat(speciality.getSpecialityName()).isEqualTo("cardiologie");
+        Assertions.assertThat(speciality.getName()).isEqualTo("cardiologie");
     }
     @Test
     public  void deleteSpecialityTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("cardiologie");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("cardiologie");
+        speciality.setDepartment(department);
         speciality= specialityServiceImp.addSpeciality(speciality);
         Long id = speciality.getId();
         specialityServiceImp.deleteSpeciality(id);
@@ -70,23 +70,23 @@ public class SpecialityServiceTest {
     @Test
     public void findSpecialityByNameTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
         Speciality speciality1 = new Speciality();
         Speciality speciality2 = new Speciality();
         Speciality speciality3 = new Speciality();
         Speciality speciality4 = new Speciality();
-        speciality.setDepartmentOfTheSpeciality(department);
-        speciality1.setDepartmentOfTheSpeciality(department);
-        speciality2.setDepartmentOfTheSpeciality(department);
-        speciality3.setDepartmentOfTheSpeciality(department);
-        speciality4.setDepartmentOfTheSpeciality(department);
-        speciality.setSpecialityName("cardiologie");
-        speciality1.setSpecialityName("gynécologie");
-        speciality2.setSpecialityName("ophtalmologie");
-        speciality3.setSpecialityName("psychiatrie");
-        speciality4.setSpecialityName("psydo");
+        speciality.setDepartment(department);
+        speciality1.setDepartment(department);
+        speciality2.setDepartment(department);
+        speciality3.setDepartment(department);
+        speciality4.setDepartment(department);
+        speciality.setName("cardiologie");
+        speciality1.setName("gynécologie");
+        speciality2.setName("ophtalmologie");
+        speciality3.setName("psychiatrie");
+        speciality4.setName("psydo");
         specialityServiceImp.addSpeciality(speciality);
         specialityServiceImp.addSpeciality(speciality1);
         specialityServiceImp.addSpeciality(speciality2);

@@ -9,7 +9,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
  @Column(nullable = false)
-    private String departmentName;
+    private String name;
 
     public Department() {
     }
@@ -22,11 +22,11 @@ public class Department {
         this.id = id;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public String getName() {
+        return name;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

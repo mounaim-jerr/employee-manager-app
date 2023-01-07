@@ -1,13 +1,14 @@
 package com.globusdigital.patientsmanager.model;
 
-import org.hibernate.annotations.Cascade;
+import com.globusdigital.patientsmanager.enums.Sex;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 
 //TODO i have to learn about Serializable
-//TODO add gender and date of born fields (column)
 // TODO ask toufik about (collection , list(can duplicate and extend collection) , set(can't duplicate the same elements , extend collection ) ) which one i should use and why ?
 @Entity
 //@Table(name="T_Patient")
@@ -24,8 +25,19 @@ public class Patient implements Serializable {
     private String phone;
     @Column(nullable = false, updatable = false)
     private String cin;
+    //TODO ask if i should delete patientCode or not ?
     @Column(nullable = false, updatable = false)
     private String patientCode;
+
+    //  add sex and nextRDV and address and dateOfBirth
+@Column
+private Sex sex ;
+@Column
+private Date nextRDV;
+@Column
+private String address;
+@Column
+private Date dateOfBirth;
    // @OneToOne( fetch = FetchType.LAZY )
     //private Doctor doctorTrait;
 
@@ -98,7 +110,39 @@ public class Patient implements Serializable {
         this.patientCode = patientCode;
     }
 
-  //  public Doctor getDoctorTrait() {
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+    public Date getNextRDV() {
+        return nextRDV;
+    }
+
+    public void setNextRDV(Date nextRDV) {
+        this.nextRDV = nextRDV;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+//  public Doctor getDoctorTrait() {
     //    return doctorTrait;
     //}
 

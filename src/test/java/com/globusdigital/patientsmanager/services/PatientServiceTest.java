@@ -49,16 +49,16 @@ public class PatientServiceTest {
     @Test
     public void addPatientTest(){
       Department department = new Department();
-      department.setDepartmentName("department");
+      department.setName("department");
       departmentServiceImp.addDepartment(department);
       Speciality speciality = new Speciality();
-      speciality.setSpecialityName("speciality");
-      speciality.setDepartmentOfTheSpeciality(department);
+      speciality.setName("speciality");
+      speciality.setDepartment(department);
       specialityServiceImp.addSpeciality(speciality);
         Doctor doctor = new Doctor();
-        doctor.setDoctorCin("FA131313");
-        doctor.setDoctorName("doctor");
-        doctor.setSpecialityOfDoctor(speciality);
+        doctor.setCin("FA131313");
+        doctor.setName("doctor");
+        doctor.setSpeciality(speciality);
         doctor = doctorServiceImp.addDoctor(doctor);
         //==============add patient
         Patient patient = new Patient();

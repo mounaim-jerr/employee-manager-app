@@ -35,7 +35,7 @@ public class DepartmentControllerTest {
     @Test
     public  void testAddDepartment() throws Exception{
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         when(departmentServices.addDepartment(department)).thenReturn(department);
         mockMvc.perform(post("/department/add")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +66,7 @@ public class DepartmentControllerTest {
     @Test
     public void testUpdateDepartment() throws Exception {
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         when(departmentServices.updateDepartment(department)).thenReturn(department);
         mockMvc.perform(put("/department/update")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -44,16 +44,16 @@ public class ConsultationServiceTest {
 
     public List<Consultation> addThreeConsultation(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         specialityServiceImp.addSpeciality(speciality);
         Doctor doctor = new Doctor();
-        doctor.setDoctorCin("doctorcin");
-        doctor.setDoctorName("doctor");
-        doctor.setSpecialityOfDoctor(speciality);
+        doctor.setCin("doctorcin");
+        doctor.setName("doctor");
+        doctor.setSpeciality(speciality);
         doctorServiceImp.addDoctor(doctor);
         Patient patient = new Patient();
         patient.setCin("patientcin");
@@ -79,16 +79,16 @@ public class ConsultationServiceTest {
     @Test
     public void addConsultationTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         specialityServiceImp.addSpeciality(speciality);
         Doctor doctor = new Doctor();
-        doctor.setDoctorCin("doctorcin");
-        doctor.setDoctorName("doctor");
-        doctor.setSpecialityOfDoctor(speciality);
+        doctor.setCin("doctorcin");
+        doctor.setName("doctor");
+        doctor.setSpeciality(speciality);
         doctorServiceImp.addDoctor(doctor);
         Patient patient = new Patient();
         patient.setCin("patientcin");

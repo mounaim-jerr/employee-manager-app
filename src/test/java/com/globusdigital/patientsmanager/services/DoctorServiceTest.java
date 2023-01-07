@@ -47,79 +47,79 @@ public class DoctorServiceTest {
 public void findDoctorByName(){
     List<Doctor> doctorFind ;
     Department department = new Department();
-    department.setDepartmentName("departement");
+    department.setName("departement");
     departmentServiceImp.addDepartment(department);
     Speciality speciality = new Speciality();
-    speciality.setSpecialityName("cardio");
-    speciality.setDepartmentOfTheSpeciality(department);
+    speciality.setName("cardio");
+    speciality.setDepartment(department);
     specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
     Doctor doctor1 = new Doctor();
     Doctor doctor2 = new Doctor();
-    doctor.setSpecialityOfDoctor(speciality);
-    doctor1.setSpecialityOfDoctor(speciality);
-    doctor2.setSpecialityOfDoctor(speciality);
-    doctor.setDoctorCin("FA171412");
-    doctor.setDoctorName("momo");
-    doctor1.setDoctorCin("FA121312");
-    doctor1.setDoctorName("mounaim");
-    doctor2.setDoctorCin("FA131313");
-    doctor2.setDoctorName("moumen");
+    doctor.setSpeciality(speciality);
+    doctor1.setSpeciality(speciality);
+    doctor2.setSpeciality(speciality);
+    doctor.setCin("FA171412");
+    doctor.setName("momo");
+    doctor1.setCin("FA121312");
+    doctor1.setName("mounaim");
+    doctor2.setCin("FA131313");
+    doctor2.setName("moumen");
     doctor =  doctorServiceImp.addDoctor(doctor);
     doctor1= doctorServiceImp.addDoctor(doctor1);
     doctor2= doctorServiceImp.addDoctor(doctor2);
     doctorFind = doctorServiceImp.findDoctorByName("momo");
     Assertions.assertThat(doctorFind.size()).isEqualTo(1);
-    Assertions.assertThat(doctorFind.get(0).getDoctorName()).isEqualTo("momo");
+    Assertions.assertThat(doctorFind.get(0).getName()).isEqualTo("momo");
 
 }
 @Test
     public void addDoctorTest(){
     Department department = new Department();
-    department.setDepartmentName("department");
+    department.setName("department");
     departmentServiceImp.addDepartment(department);
     Speciality speciality = new Speciality();
-    speciality.setSpecialityName("speciality");
-    speciality.setDepartmentOfTheSpeciality(department);
+    speciality.setName("speciality");
+    speciality.setDepartment(department);
     specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
-    doctor.setDoctorCin("FA171493");
-    doctor.setSpecialityOfDoctor(speciality);
+    doctor.setCin("FA171493");
+    doctor.setSpeciality(speciality);
     doctor = doctorServiceImp.addDoctor(doctor);
-    Assertions.assertThat(doctor.getDoctorCin()).isEqualTo("FA171493");
+    Assertions.assertThat(doctor.getCin()).isEqualTo("FA171493");
     }
     @Test
     public void updateDoctorTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
-    doctor.setDoctorCin("FA171493");
-    doctor.setSpecialityOfDoctor(speciality);
+    doctor.setCin("FA171493");
+    doctor.setSpeciality(speciality);
     doctor = doctorServiceImp.addDoctor(doctor);
     Long id = doctor.getId();
-    doctor.setDoctorCin("FA121212");
+    doctor.setCin("FA121212");
     doctor = doctorServiceImp.updateDoctor(doctor);
     Assertions.assertThat(doctor.getId()).isEqualTo(id);
     doctor = doctorServiceImp.findDoctorById(doctor.getId());
-    Assertions.assertThat(doctor.getDoctorCin()).isEqualTo("FA121212");
+    Assertions.assertThat(doctor.getCin()).isEqualTo("FA121212");
     }
     @Test
     public void deleteDoctorTest(){
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         departmentServiceImp.addDepartment(department);
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         specialityServiceImp.addSpeciality(speciality);
     Doctor doctor = new Doctor();
-    doctor.setDoctorCin("FA171492");
-    doctor.setSpecialityOfDoctor(speciality);
+    doctor.setCin("FA171492");
+    doctor.setSpeciality(speciality);
     doctor= doctorServiceImp.addDoctor(doctor);
     doctorServiceImp.deleteDoctor(doctor.getId());
     Doctor finalDoctor = doctor;

@@ -16,8 +16,7 @@ public class Consultation implements Serializable {
     private String observation;
     @Column
     private String medicament;
-    @Column
-    private LocalDate prochainRdv;
+
     @OneToOne
     @JoinColumn(nullable = false)
     private Doctor doctorConsul ;
@@ -60,13 +59,6 @@ public class Consultation implements Serializable {
         this.medicament = medicament;
     }
 
-    public LocalDate getProchainRdv() {
-        return prochainRdv;
-    }
-
-    public void setProchainRdv(LocalDate prochainRdv) {
-        this.prochainRdv = prochainRdv;
-    }
 
     public Doctor getDoctorConsul() {
         return doctorConsul;

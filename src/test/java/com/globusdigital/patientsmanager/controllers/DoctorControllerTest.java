@@ -38,13 +38,13 @@ public class DoctorControllerTest {
     @Test
     public  void testAddDoctor() throws Exception{
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         Doctor doctor = new Doctor();
-        doctor.setDoctorName("doctor");
-        doctor.setSpecialityOfDoctor(speciality);
+        doctor.setName("doctor");
+        doctor.setSpeciality(speciality);
 
         when(doctorService.addDoctor(doctor)).thenReturn(doctor);
         mockMvc.perform(post("/doctor/add")
@@ -76,13 +76,13 @@ public class DoctorControllerTest {
     @Test
     public void testUpdateDoctor() throws Exception {
         Department department = new Department();
-        department.setDepartmentName("department");
+        department.setName("department");
         Speciality speciality = new Speciality();
-        speciality.setSpecialityName("speciality");
-        speciality.setDepartmentOfTheSpeciality(department);
+        speciality.setName("speciality");
+        speciality.setDepartment(department);
         Doctor doctor = new Doctor();
-        doctor.setDoctorName("doctor");
-        doctor.setSpecialityOfDoctor(speciality);
+        doctor.setName("doctor");
+        doctor.setSpeciality(speciality);
         when(doctorService.updateDoctor(doctor)).thenReturn(doctor);
         mockMvc.perform(put("/doctor/update")
                         .contentType(MediaType.APPLICATION_JSON)

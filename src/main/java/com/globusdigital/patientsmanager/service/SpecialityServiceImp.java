@@ -31,7 +31,7 @@ public class SpecialityServiceImp implements SpecialityService {
     }
     @Override
    public List<Speciality> findSpecialityByName(String name){
-        return specialityRepo.findBySpecialityNameContaining(name);
+        return specialityRepo.findByNameContaining(name);
     }
     @Override
     public List<Speciality> findAllSpeciality(){

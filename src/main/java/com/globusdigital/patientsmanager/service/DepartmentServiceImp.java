@@ -38,6 +38,6 @@ public class DepartmentServiceImp implements DepartmentServices {
     }
     @Override
     public List<Department> findDepartmentByName(String name){
-    return  departmentRepo.findByDepartmentNameContaining(name);
+    return  departmentRepo.findByNameContaining(name);
     }
 }

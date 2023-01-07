@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Service
 public class DoctorServiceImp implements DoctorService {
@@ -22,7 +22,6 @@ public class DoctorServiceImp implements DoctorService {
 
     @Override
     public Doctor addDoctor(Doctor doctor) {
-        doctor.setDoctorCode(UUID.randomUUID().toString());
         return doctorRepo.save(doctor);
     }
     @Override
@@ -39,7 +38,7 @@ return doctorRepo.save(doctor);
     }
     @Override
     public List<Doctor> findDoctorByName(String name){
-    return  doctorRepo.findByDoctorNameContaining(name);
+    return  doctorRepo.findByNameContaining(name);
     }
     @Override
     public List<Doctor> findAllDoctors(){

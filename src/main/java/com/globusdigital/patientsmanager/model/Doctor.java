@@ -1,9 +1,10 @@
 package com.globusdigital.patientsmanager.model;
 
+import com.globusdigital.patientsmanager.enums.Sex;
+
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 public class Doctor {
@@ -13,20 +14,19 @@ public class Doctor {
 
 
     @Column
-    private String doctorName;
+    private String name;
     @Column(nullable = false)
-    private String doctorCin;
-    @Column(nullable = false, updatable = false)
-    private String doctorCode;
+    private String cin;
+
     @Column
-    private String doctorEmail;
+    private String email;
     @Column
-    private String doctorGender;
+    private Sex sex;
     @Column
-    private Date doctorBornDate;
+    private Date dateOfBirth;
     @OneToOne
     @JoinColumn(nullable = false)
-    private Speciality specialityOfDoctor;
+    private Speciality speciality;
 
 
     public Doctor() {
@@ -40,60 +40,54 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getName() {
+        return name;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDoctorCin() {
-        return doctorCin;
+    public String getCin() {
+        return cin;
     }
 
-    public void setDoctorCin(String doctorCin) {
-        this.doctorCin = doctorCin;
-    }
-
-    public String getDoctorCode() {
-        return doctorCode;
-    }
-
-    public void setDoctorCode(String doctorCode) {
-        this.doctorCode = doctorCode;
-    }
-
-    public String getDoctorEmail() {
-        return doctorEmail;
-    }
-
-    public void setDoctorEmail(String doctorEmail) {
-        this.doctorEmail = doctorEmail;
-    }
-
-    public String getDoctorGender() {
-        return doctorGender;
-    }
-
-    public void setDoctorGender(String doctorGender) {
-        this.doctorGender = doctorGender;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
 
-    public Date getDoctorBornDate() {
-        return doctorBornDate;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setDoctorBornDate(Date doctorBornDate) {
-        this.doctorBornDate = doctorBornDate;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Speciality getSpecialityOfDoctor() {
-        return specialityOfDoctor;
+    public Sex getSex() {
+        return sex;
     }
 
-    public void setSpecialityOfDoctor(Speciality specialityOfDoctor) {
-        this.specialityOfDoctor = specialityOfDoctor;
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
     }
 }

@@ -8,10 +8,10 @@ public class Speciality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String specialityName;
+    private String name;
     @OneToOne
    @JoinColumn(nullable = false)
-    private Department departmentOfTheSpeciality;
+    private Department department;
 
     public Speciality() {
     }
@@ -24,19 +24,19 @@ public class Speciality {
         this.id = id;
     }
 
-    public String getSpecialityName() {
-        return specialityName;
+    public String getName() {
+        return name;
     }
 
-    public void setSpecialityName(String specialityName) {
-        this.specialityName = specialityName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Department getDepartmentOfTheSpeciality() {
-        return departmentOfTheSpeciality;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentOfTheSpeciality(Department departmentOfTheSpeciality) {
-        this.departmentOfTheSpeciality = departmentOfTheSpeciality;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

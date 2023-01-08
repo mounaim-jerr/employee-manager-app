@@ -26,7 +26,6 @@ public class Patient implements Serializable {
     private String phone;
     @Column(nullable = false, updatable = false)
     private String cin;
-    //TODO ask if i should delete patientCode or not ?
     @Column(nullable = false, updatable = false)
     private String patientCode;
 

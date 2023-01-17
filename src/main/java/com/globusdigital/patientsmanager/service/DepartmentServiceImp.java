@@ -5,6 +5,7 @@ import com.globusdigital.patientsmanager.model.Department;
 import com.globusdigital.patientsmanager.repo.DepartmentRepo;
 import com.globusdigital.patientsmanager.service.interfaces.DepartmentServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

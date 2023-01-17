@@ -4,15 +4,18 @@ import com.globusdigital.patientsmanager.model.Consultation;
 import com.globusdigital.patientsmanager.service.interfaces.ConsultationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/consultation")
 public class ConsultationController {
     private final ConsultationService consultationServiceImp;
 
+    static Logger logger = Logger.getLogger(ConsultationController.class.getName());
     public ConsultationController(ConsultationService consultationServiceImp) {
         this.consultationServiceImp = consultationServiceImp;
     }

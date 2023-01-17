@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("")
+                .antMatchers("api/patient-manager/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

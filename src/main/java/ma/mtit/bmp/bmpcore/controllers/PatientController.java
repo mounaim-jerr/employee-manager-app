@@ -6,6 +6,7 @@ import ma.mtit.bmp.bmpcore.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class PatientController {
     }
 
     @GetMapping("/all")
+
     public ResponseEntity<List<Patient>> getAllPatients(){
         List<Patient> patients = patientServiceImp.findAllPatients();
         return new ResponseEntity<>(patients, HttpStatus.OK);
@@ -35,6 +37,7 @@ public class PatientController {
     }
 
     @PostMapping("/add")
+
     public ResponseEntity<Patient> addPatient(@RequestBody Patient patient){
         Patient newPatient = patientServiceImp.addPatient(patient);
         return new ResponseEntity<>(newPatient, HttpStatus.CREATED);

@@ -1,7 +1,10 @@
 package ma.mtit.bmp.bmpcore.config;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.bridge.MessageUtil;
+import org.aspectj.weaver.tools.DefaultTrace;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -33,11 +38,18 @@ userEmail = jwtService.extractUsername(jwt);
 if(userEmail!= null && SecurityContextHolder.getContext().getAuthentication() == null){
     UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
     if (jwtService.isTokenValid(jwt, userDetails)){
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                null,
-                userDetails.getAuthorities()
-        );
+
+        List<String> roles = jwtService.extractClaim(jwt, claims -> (List<String>) claims.get("roles"));
+        if (roles != null) {
+            System.out.println("Roles from token: " + roles);
+            List<SimpleGrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    userDetails,
+                    null,
+                    authorities
+
+            );
+
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authToken);
     }
@@ -46,4 +58,5 @@ if(userEmail!= null && SecurityContextHolder.getContext().getAuthentication() ==
 
 
     }
+}
 }

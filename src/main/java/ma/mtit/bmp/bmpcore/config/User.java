@@ -1,6 +1,5 @@
 package ma.mtit.bmp.bmpcore.config;
 
-import ma.mtit.bmp.bmpcore.enums.Provider;
 import ma.mtit.bmp.bmpcore.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,8 +32,7 @@ public class User  implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role ;
-   @Enumerated(EnumType.STRING)
-   private Provider provider;
+
 
 
     @Override

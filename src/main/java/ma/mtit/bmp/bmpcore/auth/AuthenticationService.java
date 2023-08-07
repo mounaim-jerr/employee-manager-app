@@ -1,8 +1,6 @@
 package ma.mtit.bmp.bmpcore.auth;
 
 import ma.mtit.bmp.bmpcore.config.JwtService;
-import ma.mtit.bmp.bmpcore.enums.Provider;
-import ma.mtit.bmp.bmpcore.enums.Role;
 import ma.mtit.bmp.bmpcore.config.User;
 import ma.mtit.bmp.bmpcore.config.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +23,7 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
-                .provider(Provider.LOCAL)
+                .role(request.getRole())
                 .build();
         userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -45,6 +42,4 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-
-
 }

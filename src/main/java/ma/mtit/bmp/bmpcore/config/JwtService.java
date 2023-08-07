@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.Value;
+import ma.mtit.bmp.bmpcore.enums.Role;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    private int jwtExpirationMs = 86400000;
     private static final String SECRET_KEY = "586E327235753778214125442A472D4B6150645367566B59703373367639792F";
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
@@ -31,9 +35,7 @@ return claimsResolver.apply(claims);
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
     }
-
 
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
@@ -41,16 +43,19 @@ return claimsResolver.apply(claims);
 
     }
     public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), (userDetails));
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userDetails.getAuthorities().stream().findFirst().get().getAuthority());
+        return generateToken(claims, userDetails);
     }
 
     public String generateToken(Map<String, Object> extraClaims , UserDetails userDetails){
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

@@ -18,10 +18,11 @@ public class ApplicationConfig {
     private final UserRepo userRepo;
     @Bean
     public UserDetailsService userDetailsService(){
-return username -> userRepo.findByEmail(username)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return username -> userRepo.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -37,5 +38,8 @@ return username -> userRepo.findByEmail(username)
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+
 
 }

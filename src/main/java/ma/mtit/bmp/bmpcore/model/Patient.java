@@ -28,8 +28,6 @@ public class Patient implements Serializable {
     private String cin;
     @Column(nullable = false, updatable = false)
     private String patientCode;
-
-    //  add sex and nextRDV and address and dateOfBirth
     @Column
     private Sex sex;
     @Column
